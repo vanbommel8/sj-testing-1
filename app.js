@@ -9,7 +9,7 @@ const usersRoutes = require('./routes/users');
 
 // Database configuration
 const host = 'localhost';
-const dbName = 'SJ-testing-1';
+let dbName = 'SJ-testing-1';
 
 if (process.env.NODE_ENV === 'test') {
   dbName = 'SJ-testing-1-test';

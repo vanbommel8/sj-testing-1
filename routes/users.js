@@ -21,8 +21,8 @@ router.get('/:id', function(req, res) {
 });
 
 router.post('/', [
-  check('name').isAlpha(),
-  check('surname').isAlfa(),
+  check('name').exists(),
+  check('surname').exists(),
   check('email').isEmail(),
   check('age').isInt(),
 ],

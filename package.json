@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "lint": "node ./node_modules/.bin/eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test ./node_modules/.bin/_mocha --timeout 5000 --recursive --exit ./tests"
   },
   "keywords": [
     "express",
@@ -23,6 +23,8 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "eslint": "^5.16.0",
     "eslint-config-google": "^0.12.0",
     "mocha": "^6.0.2"
