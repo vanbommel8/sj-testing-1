@@ -1,7 +1,7 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 
 // Import base routes
 const routes = require('./routes/index');
@@ -12,22 +12,22 @@ const host = 'localhost';
 const dbName = 'SJ-testing-1';
 
 if (process.env.NODE_ENV === 'test') {
-    dbName = 'SJ-testing-1-test';
+  dbName = 'SJ-testing-1-test';
 }
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://'+ host + '/' + dbName);
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', function() {
-    console.error('Connection error!')
+  console.error('Connection error!');
 });
 db.once('open', function() {
-    console.log('DB connection Ready');
+  console.log('DB connection Ready');
 });
 
 // Init express app
-var app = express();
+const app = express();
 
 // Setup logger and body parser
 app.use(morgan('dev'));
@@ -42,15 +42,15 @@ app.use('/users', usersRoutes);
 
 // Catch 404 errors
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 // Error handler
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500)
-        .json({message: err.message, error: err});
+  res.status(err.status || 500)
+      .json({message: err.message, error: err});
 });
 
 module.exports = app;
