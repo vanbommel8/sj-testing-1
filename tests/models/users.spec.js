@@ -2,13 +2,13 @@ const chai = require('chai');
 const expect = chai.expect;
 const User = require('../../models/users');
 
-describe('User.save', () => {
+describe('User.create()', () => {
   /* before('Delete all users from DB test', async () => {
     await User.remove({});
   }); */
 
   after('Delete all users from DB test', async () => {
-    await User.remove({});
+    await User.deleteMany({});
   });
 
   it('Create new User Document', async () => {

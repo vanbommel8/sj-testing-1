@@ -16,14 +16,16 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://'+ host + '/' + dbName);
+mongoose.connect('mongodb://'+ host + '/' + dbName, {useNewUrlParser: true});
 
 const db = mongoose.connection;
 db.on('error', function() {
   console.error('Connection error!');
 });
 db.once('open', function() {
-  console.log('DB connection Ready');
+  if (process.env.NODE_ENV !== 'test') {
+    console.log('DB connection Ready');
+  }
 });
 
 // Init express app
