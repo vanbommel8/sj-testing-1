@@ -32,7 +32,9 @@ db.once('open', function() {
 const app = express();
 
 // Setup logger and body parser
-app.use(morgan('dev'));
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('dev'));
+}
 app.use(bodyParser.json());
 
 // Setup static public folder
