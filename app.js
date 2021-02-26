@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'test') {
   dbName = 'SJ-testing-1-test';
 }
 
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://'+ host + '/' + dbName, {useNewUrlParser: true});
 
